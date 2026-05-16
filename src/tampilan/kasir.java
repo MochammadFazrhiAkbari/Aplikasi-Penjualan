@@ -14,7 +14,7 @@ import koneksi.koneksi;
  * @author ASUS
  */
 public class kasir extends javax.swing.JFrame {
-private Connection conn = new koneksi().connect();
+private Connection conn = koneksi.getKoneksi();
     private DefaultTableModel tabmode;
     /**
      * Creates new form kasir
@@ -311,9 +311,7 @@ protected void datatable(){
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(391, 391, 391))
+                            .addComponent(jLabel9)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

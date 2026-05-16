@@ -13,7 +13,7 @@ import koneksi.koneksi;
 
 
 public class Pelanggan extends javax.swing.JFrame {
-    private Connection conn = new koneksi().connect();
+    private Connection conn = koneksi.getKoneksi();
     private DefaultTableModel tabmode;
    
 
@@ -34,7 +34,7 @@ protected void kosong(){
     txtid.setText("");
     txtnm.setText("");
     txttelp.setText("");
-    txtalamat.setText("");
+    txtalmt.setText("");
     txtcari.setText("");
     buttonGroup1.clearSelection();
 }
@@ -87,7 +87,7 @@ protected void datatable(){
         txttelp = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtalamat = new javax.swing.JTextArea();
+        txtalmt = new javax.swing.JTextArea();
         bsimpan = new javax.swing.JButton();
         bubah = new javax.swing.JButton();
         bhapus = new javax.swing.JButton();
@@ -168,9 +168,9 @@ protected void datatable(){
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Alamat");
 
-        txtalamat.setColumns(20);
-        txtalamat.setRows(5);
-        jScrollPane1.setViewportView(txtalamat);
+        txtalmt.setColumns(20);
+        txtalmt.setRows(5);
+        jScrollPane1.setViewportView(txtalmt);
 
         bsimpan.setBackground(new java.awt.Color(255, 255, 255));
         bsimpan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -396,7 +396,7 @@ protected void datatable(){
         stat.setString(2, txtnm.getText());
         stat.setString(3, jenis);
         stat.setString(4, txttelp.getText());
-        stat.setString(5, txtalamat.getText());
+        stat.setString(5, txtalmt.getText());
 
         stat.executeUpdate();
         JOptionPane.showMessageDialog(null, "data berhasil disimpan");
@@ -425,7 +425,7 @@ protected void datatable(){
         stat.setString(1, txtnm.getText());
         stat.setString(2, jenis);
         stat.setString(3, txttelp.getText());
-        stat.setString(4, txtalamat.getText());
+        stat.setString(4, txtalmt.getText());
 
         stat.executeUpdate();
         JOptionPane.showMessageDialog(null, "data berhasil diubah");
@@ -461,7 +461,7 @@ protected void datatable(){
     }
 
     txttelp.setText(d);
-    txtalamat.setText(e);
+    txtalmt.setText(e);
     }//GEN-LAST:event_tblplgnMouseClicked
 
     private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
@@ -572,7 +572,7 @@ protected void datatable(){
     private javax.swing.JRadioButton rlaki;
     private javax.swing.JRadioButton rperempuan;
     private javax.swing.JTable tblplgn;
-    private javax.swing.JTextArea txtalamat;
+    private javax.swing.JTextArea txtalmt;
     private javax.swing.JTextField txtcari;
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnm;

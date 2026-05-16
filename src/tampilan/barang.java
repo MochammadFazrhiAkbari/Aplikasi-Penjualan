@@ -15,7 +15,7 @@ import koneksi.koneksi;
  * @author HYPE AMD
  */
 public class barang extends javax.swing.JFrame {
-  private Connection conn = new koneksi().connect();
+  private Connection conn = koneksi.getKoneksi();
     private DefaultTableModel tabmode;
     /**
      * Creates new form barang
@@ -29,13 +29,13 @@ public class barang extends javax.swing.JFrame {
            
     }
 protected void aktif(){
-    txtid.requestFocus();
+    txtkdbrg.requestFocus();
 } 
 protected void kosong() {
-    txtid.setText(null);
-    txtnm.setText(null);
-    harga_beli.setText(null);
-    harga_jual.setText(null);
+    txtkdbrg.setText(null);
+    txtnmbrg.setText(null);
+    txthb.setText(null);
+    txthj.setText(null);
     cmb_box.setSelectedIndex(0);
     
 }
@@ -45,13 +45,13 @@ protected void datatable(){
     String cariitem = txtcari.getText();
 
     try {
-        String sql = "SELECT * FROM barang WHERE kd_brg LIKE '%"+cariitem+"%' OR nm_brg LIKE '%"+cariitem+"%' ORDER BY kd_brg ASC";
+        String sql = "SELECT * FROM barang WHERE kdbrg LIKE '%"+cariitem+"%' OR nmbrg LIKE '%"+cariitem+"%' ORDER BY kd_brg ASC";
         Statement stat = conn.createStatement();
         ResultSet hasil = stat.executeQuery(sql);
         while (hasil.next()){
             tabmode.addRow(new Object[]{
-                hasil.getString("kd_brg"),
-                hasil.getString("nm_brg"),
+                hasil.getString("kdbrg"),
+                hasil.getString("nmbrg"),
                 hasil.getString("jenis"),
                 hasil.getString("hargabeli"),
                 hasil.getString("hargajual")
@@ -71,24 +71,24 @@ protected void datatable(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtid = new javax.swing.JTextField();
+        txtkdbrg = new javax.swing.JTextField();
         bsimpan = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         bubah = new javax.swing.JButton();
-        txtnm = new javax.swing.JTextField();
+        txtnmbrg = new javax.swing.JTextField();
         bhapus = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        harga_beli = new javax.swing.JTextField();
-        bcari = new javax.swing.JButton();
+        txthb = new javax.swing.JTextField();
+        bcaribrg = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblplgn = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmb_box = new javax.swing.JComboBox<>();
-        harga_jual = new javax.swing.JTextField();
+        txthj = new javax.swing.JTextField();
         txtcari = new javax.swing.JTextField();
         bbatal = new javax.swing.JButton();
         bkeluar = new javax.swing.JButton();
@@ -96,9 +96,9 @@ protected void datatable(){
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtid.addActionListener(new java.awt.event.ActionListener() {
+        txtkdbrg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidActionPerformed(evt);
+                txtkdbrgActionPerformed(evt);
             }
         });
 
@@ -124,9 +124,9 @@ protected void datatable(){
             }
         });
 
-        txtnm.addActionListener(new java.awt.event.ActionListener() {
+        txtnmbrg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnmActionPerformed(evt);
+                txtnmbrgActionPerformed(evt);
             }
         });
 
@@ -148,18 +148,18 @@ protected void datatable(){
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Harga Beli");
 
-        harga_beli.addActionListener(new java.awt.event.ActionListener() {
+        txthb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                harga_beliActionPerformed(evt);
+                txthbActionPerformed(evt);
             }
         });
 
-        bcari.setBackground(new java.awt.Color(255, 255, 255));
-        bcari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        bcari.setText("Cari");
-        bcari.addActionListener(new java.awt.event.ActionListener() {
+        bcaribrg.setBackground(new java.awt.Color(255, 255, 255));
+        bcaribrg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bcaribrg.setText("Cari");
+        bcaribrg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bcariActionPerformed(evt);
+                bcaribrgActionPerformed(evt);
             }
         });
 
@@ -197,9 +197,9 @@ protected void datatable(){
             }
         });
 
-        harga_jual.addActionListener(new java.awt.event.ActionListener() {
+        txthj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                harga_jualActionPerformed(evt);
+                txthjActionPerformed(evt);
             }
         });
 
@@ -227,7 +227,7 @@ protected void datatable(){
         });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Nama Pelanggan");
+        jLabel9.setText("Nama Barang");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,10 +250,10 @@ protected void datatable(){
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtnm, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(harga_beli, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                                    .addComponent(harga_jual)
+                                    .addComponent(txtkdbrg, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtnmbrg, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txthb, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                                    .addComponent(txthj)
                                     .addComponent(cmb_box, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
@@ -262,7 +262,7 @@ protected void datatable(){
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(bcari))
+                                .addComponent(bcaribrg))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -291,10 +291,10 @@ protected void datatable(){
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtkdbrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnm, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnmbrg, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -304,11 +304,11 @@ protected void datatable(){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(harga_beli, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txthb, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(harga_jual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txthj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bsimpan)
@@ -320,7 +320,7 @@ protected void datatable(){
                 .addComponent(jLabel7)
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bcari)
+                    .addComponent(bcaribrg)
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,25 +330,25 @@ protected void datatable(){
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
+    private void txtkdbrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkdbrgActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtidActionPerformed
+    }//GEN-LAST:event_txtkdbrgActionPerformed
 
     private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
         // TODO add your handling code here:
         String sql = "INSERT INTO barang VALUES (?,?,?,?,?)";
     try{
         PreparedStatement stat = conn.prepareStatement(sql);
-        stat.setString(1, txtid.getText());
-        stat.setString(2, txtnm.getText());
+        stat.setString(1, txtkdbrg.getText());
+        stat.setString(2, txtnmbrg.getText());
         stat.setString(3, cmb_box.getSelectedItem().toString());
-        stat.setString(4, harga_beli.getText());
-        stat.setString(5, harga_jual.getText());
+        stat.setString(4, txthb.getText());
+        stat.setString(5, txthj.getText());
 
         stat.executeUpdate();
         JOptionPane.showMessageDialog(null, "data berhasil disimpan");
         kosong();
-        txtid.requestFocus();
+        txtkdbrg.requestFocus();
     } catch (SQLException e){
         JOptionPane.showMessageDialog(null, "data gagal disimpan "+e);
     }
@@ -358,18 +358,18 @@ protected void datatable(){
     private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
         // TODO add your handling code here:\
         try{
-        String sql = "UPDATE barang SET nm_brg=?, jenis=?, hargabeli=?, hargajual=? WHERE kd_brg=?";
+        String sql = "UPDATE barang SET nmbrg=?, jenis=?, hargabeli=?, hargajual=? WHERE kdbrg=?";
         PreparedStatement stat = conn.prepareStatement(sql);
-        stat.setString(1, txtnm.getText());
+        stat.setString(1, txtnmbrg.getText());
         stat.setString(2, cmb_box.getSelectedItem().toString());
-        stat.setString(3, harga_beli.getText());
-        stat.setString(4, harga_jual.getText());
-        stat.setString(5, txtid.getText());
+        stat.setString(3, txthb.getText());
+        stat.setString(4, txthj.getText());
+        stat.setString(5, txtkdbrg.getText());
 
         stat.executeUpdate();
         JOptionPane.showMessageDialog(null, "data berhasil diubah");
         kosong();
-        txtid.requestFocus();
+        txtkdbrg.requestFocus();
     } catch (SQLException e){
         JOptionPane.showMessageDialog(null, "data gagal diubah "+e);
     }
@@ -378,23 +378,23 @@ protected void datatable(){
         
     }//GEN-LAST:event_bubahActionPerformed
 
-    private void txtnmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmActionPerformed
+    private void txtnmbrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmbrgActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnmActionPerformed
+    }//GEN-LAST:event_txtnmbrgActionPerformed
 
     private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
         // TODO add your handling code here:
         int ok = JOptionPane.showConfirmDialog(null, "hapus?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
     if (ok==0){
-        String sql = "DELETE FROM barang WHERE kd_brg=?";
+        String sql = "DELETE FROM barang WHERE kdbrg=?";
         try{
             PreparedStatement stat = conn.prepareStatement(sql);
-            stat.setString(1, txtid.getText());
+            stat.setString(1, txtkdbrg.getText());
             stat.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "data berhasil dihapus");
             kosong();
-            txtid.requestFocus();
+            txtkdbrg.requestFocus();
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "data gagal dihapus "+e);
         }
@@ -403,31 +403,31 @@ protected void datatable(){
       
     }//GEN-LAST:event_bhapusActionPerformed
 
-    private void harga_beliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_harga_beliActionPerformed
+    private void txthbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_harga_beliActionPerformed
+    }//GEN-LAST:event_txthbActionPerformed
 
-    private void bcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcariActionPerformed
+    private void bcaribrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcaribrgActionPerformed
         // TODO add your handling code here:
          datatable();
       
-    }//GEN-LAST:event_bcariActionPerformed
+    }//GEN-LAST:event_bcaribrgActionPerformed
 
     
     private void tblplgnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblplgnMouseClicked
     int bar = tblplgn.getSelectedRow();
     if (bar == -1) return;
 
-    txtid.setText(tabmode.getValueAt(bar, 0).toString());
-    txtnm.setText(tabmode.getValueAt(bar, 1).toString());
+    txtkdbrg.setText(tabmode.getValueAt(bar, 0).toString());
+    txtnmbrg.setText(tabmode.getValueAt(bar, 1).toString());
     cmb_box.setSelectedItem(tabmode.getValueAt(bar, 2).toString());
-    harga_beli.setText(tabmode.getValueAt(bar, 3).toString());
-    harga_jual.setText(tabmode.getValueAt(bar, 4).toString());
+    txthb.setText(tabmode.getValueAt(bar, 3).toString());
+    txthj.setText(tabmode.getValueAt(bar, 4).toString());
     }//GEN-LAST:event_tblplgnMouseClicked
 
-    private void harga_jualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_harga_jualActionPerformed
+    private void txthjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthjActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_harga_jualActionPerformed
+    }//GEN-LAST:event_txthjActionPerformed
 
     private void txtcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcariActionPerformed
         // TODO add your handling code here:
@@ -487,14 +487,12 @@ protected void datatable(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bbatal;
-    private javax.swing.JButton bcari;
+    private javax.swing.JButton bcaribrg;
     private javax.swing.JButton bhapus;
     private javax.swing.JButton bkeluar;
     private javax.swing.JButton bsimpan;
     private javax.swing.JButton bubah;
     private javax.swing.JComboBox<String> cmb_box;
-    private javax.swing.JTextField harga_beli;
-    private javax.swing.JTextField harga_jual;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -506,7 +504,9 @@ protected void datatable(){
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblplgn;
     private javax.swing.JTextField txtcari;
-    private javax.swing.JTextField txtid;
-    private javax.swing.JTextField txtnm;
+    private javax.swing.JTextField txthb;
+    private javax.swing.JTextField txthj;
+    private javax.swing.JTextField txtkdbrg;
+    private javax.swing.JTextField txtnmbrg;
     // End of variables declaration//GEN-END:variables
 }
